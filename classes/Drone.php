@@ -1,7 +1,5 @@
 <?php
 
-include_once  'Bee.php';
-
 class Drone extends Bee {
     
     const MAXHP = 50;

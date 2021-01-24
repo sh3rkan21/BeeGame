@@ -1,5 +1,4 @@
 <?php
-include_once 'Bee.php';
 
 class Queen extends Bee {
 

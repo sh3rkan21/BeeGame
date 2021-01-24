@@ -1,9 +1,5 @@
 <?php
 
-include 'Queen.php';
-include 'Worker.php';
-include 'Drone.php';
-
 class Hive   {
 
     const QUEEN = 1;
@@ -95,14 +91,38 @@ class Hive   {
           } 
 
         echo "Bee name: " . $bee->getName() . " - Bee HP: " . $bee->getHp() . "<br><br>";
+
+        }
+        $bee = $this->getRandomBee();
+        if($beesAlive > 0) {
+
+            echo $bee->getName() . " has been hit for " . $bee->getDamage() . " damage!<br><br>"; 
         }
 
+        echo "Bees alive: " . $beesAlive . "<br>";
         echo "Queen: " . $queenAlive . "<br>";
         echo "Workers: " . $workersAlive . "<br>";
         echo "Drones: " . $dronesAlive . "<br>";
-    }
+        
 
+        if($queenAlive == 0) {
+            echo "<a href=?action=reset>RESET</a><br>";
+            exit("Queen Died. Game over!");
+        }
+
+        
+        if($beesAlive == 0) {
+            echo "<a href=?action=reset>RESET</a><br>";
+            exit("No bees alive. Game over!");
+        }
+
+
+    }
 }
+
+
+
+
 
 
 

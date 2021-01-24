@@ -1,0 +1,10 @@
+{
+    "name": "sh3rkan21/bee-game",
+    "description": "emag bee game",
+    "autoload": {
+        "psr-4": { "": "classes/" }
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5"
+    }
+}
