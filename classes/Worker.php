@@ -2,7 +2,7 @@
 
 include_once '../abstract/bee.php';
 
-class Worker extends bee {
+class Worker extends Bee {
     const MAXHP = 75;
     const HIT_DAMAGE = 10;
     

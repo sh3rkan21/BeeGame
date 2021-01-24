@@ -1,7 +1,7 @@
 <?php
 include_once '../abstract/bee.php';
 
-class Queen extends bee {
+class Queen extends Bee {
     const MAXHP = 100;
     const HIT_DAMAGE = 8;
 

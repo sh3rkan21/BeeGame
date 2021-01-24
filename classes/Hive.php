@@ -17,43 +17,43 @@ class Hive   {
 
         $this->beesAlive = self::QUEEN + self::WORKERS + self::DRONES;
 
-        for($i = 1; $i <= self::QUEEN; $i++) {
-            $this->hive[] = new Queen(); 
-            $this->hive[0]->setName('Queen');
+        for($i = 0; $i < self::QUEEN; $i++) {
+            $this->hive[] = (new Queen())->setName('Queen ' . $i);
         }
 
         // generate Workers
 
-        for($i = 1; $i <= self::WORKERS; $i++) {
-            $this->hive[] = new Worker();
-            $this->hive[$i]->setName('Worker ' . $i);
+        for($i = 0; $i < self::WORKERS; $i++) {
+            $this->hive[] = (new Worker())->setName('Worker' . $i);
         }
         
         // generate Drones
         
-        for($i = count($this->hive); $i < $this->totalBees; $i++) {
-            $this->hive[] = new Drone();  
-            $this->hive[$i]->setName('Drone ' . $i);
+        for($i = 0; $i < self::DRONES; $i++) {
+            $this->hive[] = (new Drone())->setName('Drone' . $i);
         }
+        // echo "<pre>";
+        // print_r($this->hive);
+        // echo "</pre>";
+        // echo "sunt in constructor";
     }
 
     private function getRandomBee() {
 
+        $beeStatus = [];
+        
 
-        $rand = mt_rand(0, $this->totalBees -1);
-               
-        if(isset($this->hive[$rand])){
-            $bee = $this->hive[$rand];
+        foreach($this->hive as $key=>$bee){
             if($bee->isAlive()) {
+                $beeStatus[$key] = $bee->isAlive();
+            }
+        }
 
-                return $bee;
-                
-            } 
-        }
-        if($this->hive[0]->getHp() > 0) {
-            return $this->getRandomBee();
-        }
-    }   
+        $beeIndex = array_rand($beeStatus);
+        
+            print_r($this->hive[$beeIndex]);
+            return $this->hive[$beeIndex];        
+    }
        
 
     public function hit() {
@@ -79,13 +79,16 @@ class Hive   {
         $beesAlive = $this->beesAlive;
         $workers = 0;
         $drones = 0;
+        $queen = 0;
 
         foreach($this->hive as $bee){
           $type = get_class($bee);
           switch($type) {
               case get_class($bee) == Queen::class :
-                
-                
+                if($bee->isAlive()){
+                    $queen++;
+                }
+                               
                 break;
                 case get_class($bee) == Worker::class :  
                     if($bee->isAlive()){
@@ -98,10 +101,10 @@ class Hive   {
                     }
                 break;
 
-          }
-                  echo $workers;    
-            
+          }        
         }
+        echo "Queen HP: "; 
+}
         // for($i = 1; $i <= self::WORKERS; $i++){
         //     if(!$this->hive[$i]->isAlive())
         //     $workers[] = $this->hive[$i];
@@ -126,24 +129,17 @@ class Hive   {
 
         // echo "Bees alive: " . $this->beesAlive.  "<br>Queen HP:". $this->hive[0]->getHp() ."<br> Workers bee dead:   <br> Drones bee dead:  <br><br>";         
         
-    }
+    
 
 }
               
-$s = new hive();
+$s = new Hive();
 
 $s->hit();
 
 
 
 
-
-
-
-
-echo "<pre>";
-print_r($s);
-echo "</pre>";
 
 
 

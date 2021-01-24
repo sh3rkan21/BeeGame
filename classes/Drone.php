@@ -1,8 +1,8 @@
 <?php
 
-include_once  '../abstract/bee.php';
+include_once  '../abstract/Bee.php';
 
-class Drone extends bee {
+class Drone extends Bee {
     const MAXHP = 50;
     const HIT_DAMAGE = 12;
 

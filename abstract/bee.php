@@ -1,6 +1,6 @@
 <?php
 
-abstract class bee {
+abstract class Bee {
 
     protected $hp;
     protected $name;
@@ -20,6 +20,7 @@ abstract class bee {
     
     public function setName($name) {
         $this->name = $name;
+        return $this;
     }
 
     abstract public function takeHit();
