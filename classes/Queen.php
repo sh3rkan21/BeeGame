@@ -1,5 +1,5 @@
 <?php
-include_once '../abstract/bee.php';
+include_once 'Bee.php';
 
 class Queen extends Bee {
     const MAXHP = 100;

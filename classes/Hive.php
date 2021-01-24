@@ -40,15 +40,16 @@ class Hive   {
 
     private function getRandomBee() {
 
-        $beeStatus = [];
-        
-
+        $beeStatus = [];    
         foreach($this->hive as $key=>$bee){
             if($bee->isAlive()) {
                 $beeStatus[$key] = $bee->isAlive();
             }
         }
-
+        
+        if(count($beeStatus) == 0){
+            return null;
+        }
         $beeIndex = array_rand($beeStatus);
         
             print_r($this->hive[$beeIndex]);
@@ -77,57 +78,40 @@ class Hive   {
     private function showStats(){
 
         $beesAlive = $this->beesAlive;
-        $workers = 0;
-        $drones = 0;
-        $queen = 0;
+        $workersAlive = 0;
+        $dronesAlive = 0;
+        $queenAlive = 0;
 
         foreach($this->hive as $bee){
           $type = get_class($bee);
           switch($type) {
-              case get_class($bee) == Queen::class :
+              case Queen::class :
                 if($bee->isAlive()){
-                    $queen++;
+                    $queenAlive++;
                 }
                                
                 break;
-                case get_class($bee) == Worker::class :  
+                case Worker::class :  
                     if($bee->isAlive()){
-                        $workers++;
+                        $workersAlive++;
                     }
                     break;
-                case get_class($bee) == Drone::class :
+                case Drone::class :
                     if($bee->isAlive()){
-                        $drones++;
+                        $dronesAlive++;
                     }
                 break;
-
-          }        
+          } 
+          echo "<pre>";
+          print_r($bee);       
+          echo "</pre>";
         }
-        echo "Queen HP: "; 
+
+        echo "Queen: " . $queenAlive;
+        echo "Workers: " . $workersAlive;
+        echo "Drones: " . $dronesAlive;
 }
-        // for($i = 1; $i <= self::WORKERS; $i++){
-        //     if(!$this->hive[$i]->isAlive())
-        //     $workers[] = $this->hive[$i];
-        // }
-
-        // for($i = 1; $i <= self::DRONES; $i++){
-        //     if(!$this->hive[$i]->isAlive())
-        //     $drones[] = $this->hive[$i];
-        // }
-        
-        // if($beesAlive <= 0) {
-        //     $message = "No bee alive! Game Over!";
-        //     echo $message;
-        //     exit();
-        // }
-
-        // if(!$this->hive[0]->isAlive()){
-        //     $message = "Queen Died. Game Over!";
-        //     echo $message;
-        //     exit();
-        // }
-
-        // echo "Bees alive: " . $this->beesAlive.  "<br>Queen HP:". $this->hive[0]->getHp() ."<br> Workers bee dead:   <br> Drones bee dead:  <br><br>";         
+   
         
     
 

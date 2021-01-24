@@ -1,6 +1,6 @@
 <?php
 
-include_once '../abstract/bee.php';
+include_once 'Bee.php';
 
 class Worker extends Bee {
     const MAXHP = 75;
