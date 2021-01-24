@@ -6,19 +6,23 @@ abstract class Bee {
     protected $name;
 
     public function getHp() {
+        
         return $this->hp;
     }
     
     public function setHp($hp) {
+
         $this->hp = $hp;
     }
 
 
     public function getName() {
+
         return $this->name;
     }
     
     public function setName($name) {
+
         $this->name = $name;
         return $this;
     }
@@ -27,9 +31,12 @@ abstract class Bee {
 
     public function isAlive() {
 
-        if($this->getHp() > 0 ){
+        if($this->getHp() > 0 ) {
+
             return true;
+
         } else {
+
             return false;
         }
     }       

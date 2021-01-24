@@ -13,7 +13,7 @@ class Hive   {
    
     
 
-    public function __construct(){
+    public function __construct() {
 
         $this->beesAlive = self::QUEEN + self::WORKERS + self::DRONES;
 
@@ -21,21 +21,16 @@ class Hive   {
             $this->hive[] = (new Queen())->setName('Queen ' . $i);
         }
 
-        // generate Workers
 
         for($i = 0; $i < self::WORKERS; $i++) {
-            $this->hive[] = (new Worker())->setName('Worker' . $i);
+            $this->hive[] = (new Worker())->setName('Worker ' . $i);
         }
         
-        // generate Drones
         
         for($i = 0; $i < self::DRONES; $i++) {
-            $this->hive[] = (new Drone())->setName('Drone' . $i);
+            $this->hive[] = (new Drone())->setName('Drone ' . $i);
         }
-        // echo "<pre>";
-        // print_r($this->hive);
-        // echo "</pre>";
-        // echo "sunt in constructor";
+   
     }
 
     private function getRandomBee() {
@@ -51,9 +46,7 @@ class Hive   {
             return null;
         }
         $beeIndex = array_rand($beeStatus);
-        
-            print_r($this->hive[$beeIndex]);
-            return $this->hive[$beeIndex];        
+           return $this->hive[$beeIndex];        
     }
        
 
@@ -70,12 +63,11 @@ class Hive   {
             }
         }         
         
-        $this->showStats();
     }
 
     
 
-    private function showStats(){
+    public function showStats(){
 
         $beesAlive = $this->beesAlive;
         $workersAlive = 0;
@@ -85,11 +77,10 @@ class Hive   {
         foreach($this->hive as $bee){
           $type = get_class($bee);
           switch($type) {
-              case Queen::class :
+                case Queen::class :
                 if($bee->isAlive()){
                     $queenAlive++;
-                }
-                               
+                }         
                 break;
                 case Worker::class :  
                     if($bee->isAlive()){
@@ -102,24 +93,16 @@ class Hive   {
                     }
                 break;
           } 
-          echo "<pre>";
-          print_r($bee);       
-          echo "</pre>";
+
+        echo "Bee name: " . $bee->getName() . " - Bee HP: " . $bee->getHp() . "<br><br>";
         }
 
-        echo "Queen: " . $queenAlive;
-        echo "Workers: " . $workersAlive;
-        echo "Drones: " . $dronesAlive;
-}
-   
-        
-    
+        echo "Queen: " . $queenAlive . "<br>";
+        echo "Workers: " . $workersAlive . "<br>";
+        echo "Drones: " . $dronesAlive . "<br>";
+    }
 
 }
-              
-$s = new Hive();
-
-$s->hit();
 
 
 

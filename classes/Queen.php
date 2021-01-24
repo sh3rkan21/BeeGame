@@ -2,10 +2,12 @@
 include_once 'Bee.php';
 
 class Queen extends Bee {
+
     const MAXHP = 100;
     const HIT_DAMAGE = 8;
 
-    public function __construct(){
+    public function __construct() {
+        
         $this->setHp(self::MAXHP);
         
     }
@@ -21,8 +23,6 @@ class Queen extends Bee {
             
         return $this->setHp($this->getHp() - self::HIT_DAMAGE);
 
-        } else {
-            echo "<br>Queen died. <br> GAME OVER!";
         }
     }
 }
