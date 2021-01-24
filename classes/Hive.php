@@ -57,8 +57,12 @@ class Hive   {
             if($bee->isAlive() == false){
                 $this->beesAlive -= 1; 
             }
-        }         
-        
+        }
+            if($this->beesAlive > 0){
+
+                echo "<b>" . $bee->getName() . " has been hit for " . $bee->getDamage() . " damage!<br><br>" . "</b>"; 
+            }
+
     }
 
     
@@ -92,11 +96,6 @@ class Hive   {
 
         echo "Bee name: " . $bee->getName() . " - Bee HP: " . $bee->getHp() . "<br><br>";
 
-        }
-        $bee = $this->getRandomBee();
-        if($beesAlive > 0) {
-
-            echo $bee->getName() . " has been hit for " . $bee->getDamage() . " damage!<br><br>"; 
         }
 
         echo "Bees alive: " . $beesAlive . "<br>";
